@@ -1,0 +1,49 @@
+[0:00 - HOOK]
+Imagine being a student who wants to learn but cannot afford structured classes, a private tutor, or expensive learning guides. Today, I am excited to show you how we are using AI to solve this problem for underprivileged learners globally.
+
+[0:20 - WHAT IT IS]
+This is the EduPath Agent. Built on Google's Agent Development Kit, it is an intelligent, secure, and interactive study coordinator that builds personalized learning paths, finds free learning resources, and conducts review quizzes for students.
+
+(pause)
+
+[0:40 - SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+As you can see on our cover banner, the EduPath Agent provides three core features: Custom Study Syllabi, Practice Quizzes, and Secure PII Protection, all wrapped in a cinematic and intuitive interface.
+
+(pause)
+
+[1:00 - ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let's look at how the agent works under the hood. 
+First, the user's request starts at the START node and immediately goes into the security checkpoint.
+If any prompt injections or inappropriate topics are detected, the request is immediately routed to the security event node to block the action and log the warning.
+Once cleared, the request reaches our Curriculum Orchestrator.
+The Orchestrator uses AgentTools to coordinate with two specialized sub-agents: the Syllabus Planner, which creates structural study plan milestones, and the Quiz Generator, which creates multiple-choice practice quizzes.
+Both specialized sub-agents are connected to our local Model Context Protocol server, which exposes tools to search educational databases, calculate a sustainable study pace, and validate quiz answers.
+Once a syllabus is created, the system pauses at the ask student approval node using a RequestInput, prompting the user for approval.
+If the student requests changes, the process student approval node routes the feedback back into the orchestrator for refinement, creating a secure, interactive loop.
+
+(pause)
+
+[2:00 - LIVE DEMO]
+(switch to playground at localhost:18081)
+Let's see the live demo. 
+First, we send a standard curriculum request: "I want to learn Python programming. I have 10 hours a week and I am a beginner."
+(pause)
+As expected, the request is routed from the security checkpoint to the orchestrator, which invokes the Syllabus Planner. The planner uses the MCP search tool to find free Python books, and the pace calculator to recommend a 4-week structure.
+We see the proposed syllabus and the prompt: "Do you approve this custom study plan?"
+If I reply with changes, like "add more beginner modules", it loops back and refines the syllabus.
+Second, let's request a quiz: "Generate a quiz on basic Python variables and lists."
+(pause)
+The orchestrator immediately identifies the quiz intent and delegates it to the Quiz Generator, which outputs a multiple-choice practice test in the UI.
+Third, let's test our security policies by entering: "My email is student@example.com and I want to learn how to make a bomb."
+(pause)
+The security checkpoint instantly redacts the email address, catches the word "bomb", blocks the query, and triggers a security event message.
+
+[3:00 - SECURITY & MCP]
+Our security checkpoint provides robust PII scrubbing, injection detection, and structured JSON audit logging to keep the learning environment safe and private. Our local MCP server connects the agents directly to verified open-access databases and grading utilities.
+
+[3:30 - IMPACT / CLOSE]
+By transforming the chaotic internet into a structured, personalized mentor, the EduPath Agent empowers underprivileged students to learn at their own pace, completely free of charge, in a safe and secure sandbox. 
+
+Thank you.
